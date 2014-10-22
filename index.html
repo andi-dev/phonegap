@@ -1,1 +1,15 @@
-<h3>Hallo</h3>
+<html>
+  <head>
+    <script src="cordova.js"></script>
+    <script src="angular.min.js"></script>
+    <script>
+      var setup = function() {
+        alert('foo');
+      }
+      document.addEventListener("deviceready", setup, false);
+    </script>
+  </head>
+  <body>
+    <h3>Hallo</h3>
+  </body>
+</html>
