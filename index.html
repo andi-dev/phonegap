@@ -3,8 +3,6 @@
     <script src="cordova.js"></script>
     <script src="angular.min.js"></script>
     <script>
-      document.addEventListener("deviceready", setup, false);
-
       var setup = function() {
 
         alert('ready');
@@ -20,6 +18,7 @@
 
       };
 
+      document.addEventListener("deviceready", setup, false);
 
       var online = function() {
         alert('online');
