@@ -6,8 +6,8 @@
       document.addEventListener("deviceready", setup, false);
 
       var setup = function() {
-        document.addEventListener("online", online, false);
-        document.addEventListener("offline", offline, false);
+        <!-- document.addEventListener("online", online, false); -->
+        <!-- document.addEventListener("offline", offline, false); -->
         document.addEventListener("resume", resume, false);
 
         navigator.globalization.getPreferredLanguage(
@@ -19,8 +19,8 @@
       var online = function() {
         alert('online');
       };
-      var online = function() {
-        alert(offline);
+      var offline = function() {
+        alert('offline');
       };
       var resume = function() {
         alert('resume');
