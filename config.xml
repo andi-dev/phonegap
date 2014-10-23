@@ -25,4 +25,6 @@
 
     <gap:splash src="splash.png" />
 
+    <gap:plugin name="org.apache.cordova.globalization" version="0.3.1" />
+
 </widget>

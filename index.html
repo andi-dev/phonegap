@@ -3,18 +3,28 @@
     <script src="cordova.js"></script>
     <script src="angular.min.js"></script>
     <script>
+      document.addEventListener("deviceready", setup, false);
+
       var setup = function() {
         document.addEventListener("online", online, false);
-        document.addEventListener("offline", online, false);
+        document.addEventListener("offline", offline, false);
         document.addEventListener("resume", resume, false);
-      }
+
+        navigator.globalization.getPreferredLanguage(
+          function (language) {alert('language: ' + language.value + '\n');},
+          function () {alert('Error getting language\n');}
+        );
+
+      };
       var online = function() {
         alert('online');
-      }
+      };
+      var online = function() {
+        alert(offline);
+      };
       var resume = function() {
         alert('resume');
-      }
-      document.addEventListener("deviceready", setup, false);
+      };
     </script>
   </head>
   <body>
