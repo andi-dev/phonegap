@@ -3,32 +3,43 @@
     <script src="cordova.js"></script>
     <script src="angular.min.js"></script>
     <script>
+
+      vat app = {};
+
       var setup = function() {
 
         alert('ready');
 
-        document.addEventListener("online", online, false);
-        document.addEventListener("offline", offline, false);
-        document.addEventListener("resume", resume, false);
+        document.addEventListener("online", onOnline, false);
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("resume", onResume, false);
 
         navigator.globalization.getPreferredLanguage(
-          function (language) {alert('language: ' + language.value + '\n');},
-          function () {alert('Error getting language\n');}
+          function (language) { setLanguage(language.substring(0,2)); },
+          function () { setLanguage('en'); }
         );
 
       };
 
-      document.addEventListener("deviceready", setup, false);
+      var setLanguage(lang) {
+        app.language = lang;
+        alert('language: ' + app.language);
+      }
 
-      var online = function() {
+      var onOnline = function() {
         alert('online');
+        app.online = true;
       };
-      var offline = function() {
+      var onOffline = function() {
         alert('offline');
+        app.online = false;
       };
-      var resume = function() {
+      var onResume = function() {
         alert('resume');
       };
+
+      document.addEventListener("deviceready", setup, false);
+
     </script>
   </head>
   <body>
