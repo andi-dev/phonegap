@@ -4,7 +4,9 @@
     <script src="angular.min.js"></script>
     <script>
       var setup = function() {
-        alert('ready');
+        document.addEventListener("online", online, false);
+        document.addEventListener("offline", online, false);
+        document.addEventListener("resume", resume, false);
       }
       var online = function() {
         alert('online');
@@ -13,8 +15,6 @@
         alert('resume');
       }
       document.addEventListener("deviceready", setup, false);
-      document.addEventListener("online", online, false);
-      document.addEventListener("resume", resume, false);
     </script>
   </head>
   <body>
