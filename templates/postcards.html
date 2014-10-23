@@ -1,0 +1,9 @@
+<ion-view title="Postkarte auswaehlen">
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item ng-repeat="postcard in postcards" href="#/postcards/{{postcard.id}}">
+        {{postcard.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
