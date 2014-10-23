@@ -4,7 +4,7 @@
     <script src="angular.min.js"></script>
     <script>
 
-      vat app = {};
+      var app = {};
 
       var setup = function() {
 
@@ -21,19 +21,21 @@
 
       };
 
-      var setLanguage(lang) {
+      var setLanguage = function(lang) {
         app.language = lang;
         alert('language: ' + app.language);
-      }
+      };
 
       var onOnline = function() {
         alert('online');
         app.online = true;
       };
+
       var onOffline = function() {
         alert('offline');
         app.online = false;
       };
+
       var onResume = function() {
         alert('resume');
       };
