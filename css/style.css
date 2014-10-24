@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+
+.postcard-list {
+  text-align: center;
+}
+
+.postcard {
+  width: 100%;
+  max-width: 300px;
+}

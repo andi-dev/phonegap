@@ -27,8 +27,14 @@ One.config(function($stateProvider, $urlRouterProvider) {
     controller: 'UserDataController',
     templateUrl: "templates/user_data.html"
   });
+  $stateProvider.state('signature', {
+    url: '/signature',
+    templateUrl: "templates/signature.html"
+  });
   $urlRouterProvider.otherwise("/postcards");
 });
+
+
 
 var DetailsController;
 
@@ -87,6 +93,60 @@ UserDataController = (function() {
 
 })();
 
+One.directive("signature", function() {
+  return {
+    restrict: "A",
+    link: function(scope, element) {
+      var ctx, draw, drawing, lastX, lastY, reset;
+      reset = function() {
+        element[0].width = element[0].width;
+      };
+      draw = function(lX, lY, cX, cY) {
+        ctx.moveTo(lX, lY);
+        ctx.lineTo(cX, cY);
+        ctx.strokeStyle = "#4bf";
+        ctx.stroke();
+      };
+      ctx = element[0].getContext("2d");
+      drawing = false;
+      lastX = void 0;
+      lastY = void 0;
+      element.bind("mousedown", function(event) {
+        if (event.offsetX !== undefined) {
+          lastX = event.offsetX;
+          lastY = event.offsetY;
+        } else {
+          lastX = event.layerX - event.currentTarget.offsetLeft;
+          lastY = event.layerY - event.currentTarget.offsetTop;
+        }
+        ctx.beginPath();
+        drawing = true;
+      });
+      element.bind("mousemove", function(event) {
+        var currentX, currentY;
+        if (drawing) {
+          if (event.offsetX !== undefined) {
+            currentX = event.offsetX;
+            currentY = event.offsetY;
+          } else {
+            currentX = event.layerX - event.currentTarget.offsetLeft;
+            currentY = event.layerY - event.currentTarget.offsetTop;
+          }
+          draw(lastX, lastY, currentX, currentY);
+          lastX = currentX;
+          lastY = currentY;
+        }
+      });
+      return element.bind("mouseup", function(event) {
+        var dataUrl;
+        dataUrl = element[0].toDataURL();
+        console.log(dataUrl);
+        drawing = false;
+      });
+    }
+  };
+});
+
 var Postcards;
 
 Postcards = (function() {
@@ -95,16 +155,20 @@ Postcards = (function() {
   Postcards.prototype.all = [
     {
       id: 0,
-      name: "Scruff McGruff"
+      name: "Aids",
+      front: "https://s3.eu-central-1.amazonaws.com/onecard/card1.png"
     }, {
       id: 1,
-      name: "G.I. Joe"
+      name: "Hunger",
+      front: "https://s3.eu-central-1.amazonaws.com/onecard/card2.png"
     }, {
       id: 2,
-      name: "Miss Frizzle"
+      name: "Armut",
+      front: "https://s3.eu-central-1.amazonaws.com/onecard/card1.png"
     }, {
       id: 3,
-      name: "Ash Ketchum"
+      name: "Krieg",
+      front: "https://s3.eu-central-1.amazonaws.com/onecard/card2.png"
     }
   ];
 
